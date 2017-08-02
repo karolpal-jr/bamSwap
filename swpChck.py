@@ -1,17 +1,22 @@
 import subprocess
+import pysam
+import sys
 
-proc = subprocess.run(["which", "samtools"], stdout=subprocess.PIPE)
+#proc = subprocess.run(["which", "samtools"], stdout=subprocess.PIPE)
 
-if(len(proc.stdout)==0):
-    print("Samtools not in path. Exiting")
-    exit(1)
+#if(len(proc.stdout)==0):
+#    print("Samtools not in path. Exiting")
+#    exit(1)
+#else:
+#    print("Found Samtools")
+
+
+if len(sys.argv) <= 2:
+    print("please provide at least two exome bam files as arguments.")
+    exit(2)
 else:
-    print("Found Samtools")
+    print("bam files provided: ", sys.argv[1:])
 
-
-#check if bam files have correct coordinate
-
-#read bam files (what number?)
 
 #check if chr or not chr
 
