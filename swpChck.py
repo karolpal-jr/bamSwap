@@ -2,9 +2,10 @@ import subprocess
 import pysam
 import sys
 import pandas
-import matplotlib
+import matplotlib.pyplot as plt
+import pylab
 
-COORDINATES = "./SNP/all.snps.sorted.txt"
+COORDINATES = "./snp/all.snps.sorted.txt"
 
 def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█'):
     """
@@ -49,6 +50,7 @@ else:
 coord = pandas.read_csv(COORDINATES, sep='\t',header=None)
 index = coord[4].tolist()
 
+
 columns=[sys.argv[1:]]
 df = pandas.DataFrame(index=index,columns=columns)
 
@@ -63,7 +65,7 @@ for file in sys.argv[1:]:
         print("hg19 assumed: chr detected in the reference of ", file)
         chr = 'chr'
     else:
-        print("GRCh38 assumed: chr not detected in reference of ", file)
+        print("GRCh37 assumed: chr not detected in reference of ", file)
         chr = ''
 
     for index,row in coord.iterrows():
@@ -92,5 +94,5 @@ for file in sys.argv[1:]:
 
 #plot graph
 
-plot = df.plot.scatter(x=sys.argv[1], y=sys.argv[2])
-plot.savefig("out.pdf")
+plt.plot(df[sys.argv[1]].tolist(), df[sys.argv[2]].tolist(),"o")
+pylab.savefig("out.pdf")
