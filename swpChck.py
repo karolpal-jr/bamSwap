@@ -15,7 +15,7 @@ if len(sys.argv) <= 2:
     print("please provide at least two exome bam files as arguments.")
     exit(2)
 else:
-    print("bam files provided: ", sys.argv[1:])
+    print("bam provided " + str(len(sys.argv[1:])) +" bam files: "+ sys.argv[1:])
 
 
 #check if chr or not chr
