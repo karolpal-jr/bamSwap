@@ -1,6 +1,6 @@
 # Requirements
 
-The tool is teste with Python3 and uses the following libraries:
+The tool is tested with Python3 and uses the following libraries:
 
  * pysam
  * pandas
