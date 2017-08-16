@@ -57,7 +57,7 @@ index = coord[4].tolist()
 columns=[args.bam1, args.bam2]
 df = pandas.DataFrame(index=index,columns=columns)
 
-full = 2
+full = 2*len(coord.index)
 inc = 0
 
 
