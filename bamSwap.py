@@ -4,6 +4,16 @@ import sys
 import pandas
 import matplotlib.pyplot as plt
 import pylab
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("bam1")
+parser.add_argument("bam2")
+parser.add_argument("-n","--name",help="name of the output plot")
+args = parser.parse_args()
+
+print(args.name)
+
 
 COORDINATES = "./snp/all.snps.sorted.txt"
 
@@ -38,28 +48,21 @@ def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, 
 #    print("Found Samtools")
 
 
-if len(sys.argv) <= 2:
-    print("please provide at least two exome bam files as arguments.")
-    exit(2)
-else:
-    print("bam provided " + str(len(sys.argv[1:])) + " bam files: ")
-    print('\n'.join('{}: {}'.format(*k) for k in enumerate(sys.argv[1:])))
 
 #read bed file
 
 coord = pandas.read_csv(COORDINATES, sep='\t',header=None)
 index = coord[4].tolist()
 
-
-columns=[sys.argv[1:]]
+columns=[args.bam1, args.bam2]
 df = pandas.DataFrame(index=index,columns=columns)
 
-full = len(df)*len(sys.argv[1:])
+full = 2
 inc = 0
 
 
 printProgressBar(inc, full, prefix='Progress:', suffix='Complete', length=50)
-for file in sys.argv[1:]:
+for file in [args.bam1,args.bam2]:
     samfile = pysam.Samfile(file, "rb")
     if 'chr' in samfile.references[1]:
         print("hg19 assumed: chr detected in the reference of ", file)
@@ -93,6 +96,8 @@ for file in sys.argv[1:]:
 
 
 #plot graph
-
-plt.plot(df[sys.argv[1]].tolist(), df[sys.argv[2]].tolist(),"o")
+#args.bam1.split(str="/", num=string.count(str))
+if(args.name != None):
+    plt.title(args.name)
+plt.plot(df[args.bam1].tolist(), df[args.bam2].tolist(),"o",mec = 'blue',mfc = 'None',)
 pylab.savefig("out.pdf")
