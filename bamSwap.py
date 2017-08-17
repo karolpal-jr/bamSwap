@@ -98,8 +98,8 @@ for file in [args.bam1,args.bam2]:
 
 
 #plot graph
-b1 = args.bam1.split(str="/")
-b2 = args.bam2.split(str="/")
+b1 = args.bam1.split("/")
+b2 = args.bam2.split("/")
 
 
 if(args.name != None):
