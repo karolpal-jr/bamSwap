@@ -2,6 +2,8 @@ import subprocess
 import pysam
 import sys
 import pandas
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 import pylab
 import argparse
@@ -96,8 +98,13 @@ for file in [args.bam1,args.bam2]:
 
 
 #plot graph
-#args.bam1.split(str="/", num=string.count(str))
+b1 = args.bam1.split(str="/")
+b2 = args.bam2.split(str="/")
+
+
 if(args.name != None):
     plt.title(args.name)
-plt.plot(df[args.bam1].tolist(), df[args.bam2].tolist(),"o",mec = 'blue',mfc = 'None',)
+plt.xlabel(b1[len(b1)-1].replace(".bam", ""))
+plt.ylabel(b2[len(b2)-1].replace(".bam", ""))
+plt.plot(df[args.bam1].tolist(), df[args.bam2].tolist(), "o", mfc='None',)
 pylab.savefig("out.pdf")
