@@ -107,4 +107,8 @@ if(args.name != None):
 plt.xlabel(b1[len(b1)-1].replace(".bam", ""))
 plt.ylabel(b2[len(b2)-1].replace(".bam", ""))
 plt.plot(df[args.bam1].tolist(), df[args.bam2].tolist(), "o", mfc='None',)
-pylab.savefig("out.pdf")
+if(args.name != None):
+    fn = args.name
+else:
+    fn = 'out'
+pylab.savefig(fn+".pdf")
