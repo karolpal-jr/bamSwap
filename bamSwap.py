@@ -89,9 +89,9 @@ for file in [args.bam1,args.bam2]:
                         #print(base)
         printProgressBar(inc, full, prefix='Progress:', suffix='Complete', length=50)
         if all > 0:
-            df.loc[[row[4]],[file]] = ref/all
+            df.loc[[row[4]],[file]] = (all-ref)/all
         else:
-            df.loc[[row[4]], [file]] = 0
+            df.loc[[row[4]], [file]] = -0.1
 
         #add column to dataframe
 
