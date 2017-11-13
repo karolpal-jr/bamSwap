@@ -14,7 +14,7 @@ parser.add_argument("bam2")
 parser.add_argument("-n","--name",help="name of the output plot")
 args = parser.parse_args()
 
-print(args.name)
+#print(args.name)
 
 
 COORDINATES = "./snp/all.snps.sorted.txt"
