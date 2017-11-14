@@ -12,12 +12,15 @@ parser = argparse.ArgumentParser()
 parser.add_argument("bam1")
 parser.add_argument("bam2")
 parser.add_argument("-n","--name",help="name of the output plot")
+parser.add_argument("-s","--species",help="currently onlhy 'huma' and 'dog' are recognized",default='human',choices=['human','dog'])
 args = parser.parse_args()
 
 #print(args.name)
 
-
-COORDINATES = "./snp/all.snps.sorted.txt"
+if args.species == 'human':
+    COORDINATES = "./snp/all.snps.sorted.txt"
+elif args.species == 'dog':
+    COORDINATES = "./snp/all.dog_snps_canfam1.0.bed.txt"
 
 def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█'):
     """
