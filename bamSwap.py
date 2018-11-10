@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("bam1")
 parser.add_argument("bam2")
 parser.add_argument("-n","--name",help="name of the output plot")
-parser.add_argument("-s","--species",help="currently only 'huma' and 'dog' are recognized",default='human',choices=['human','dog'])
+parser.add_argument("-s","--species",help="currently only 'human' and 'dog' are recognized",default='human',choices=['human','dog'])
 args = parser.parse_args()
 
 #print(args.name)
