@@ -7,6 +7,7 @@ matplotlib.use('agg')
 import matplotlib.pyplot as plt
 import pylab
 import argparse
+import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument("bam1")
@@ -16,11 +17,12 @@ parser.add_argument("-s","--species",help="currently only 'human' and 'dog' are 
 args = parser.parse_args()
 
 #print(args.name)
+wd = os.path.dirname(os.path.realpath(__file__))
 
 if args.species == 'human':
-    COORDINATES = "./snp/all.snps.sorted.txt"
+    COORDINATES = wd + "/snp/all.snps.sorted.txt"
 elif args.species == 'dog':
-    COORDINATES = "./snp/all.dog_snps_canfam1.0.bed.txt"
+    COORDINATES = wd + "/snp/all.dog_snps_canfam1.0.bed.txt"
 
 def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█'):
     """
